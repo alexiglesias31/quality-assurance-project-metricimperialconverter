@@ -16,8 +16,8 @@ function ConvertHandler() {
   };
   
   this.getUnit = function(input) {
-    let result = input.match(/\d*([gG][aA][lL]|[lL][bB][sS]|[kK][gG]|[mM][iI]|[kK][mM]|L)$/);
-    return result ? result[1] === 'L' ? result[1] : result[1].toLowerCase() : 'invalid unit'
+    let result = input.match(/\d*([gG][aA][lL]|[lL][bB][sS]|[kK][gG]|[mM][iI]|[kK][mM]|[lL])$/);
+    return result ? result[1] === 'L' || result[1] === 'l' ? 'L' : result[1].toLowerCase() : 'invalid unit'
   };
   
   this.getReturnUnit = function(initUnit) {
@@ -34,12 +34,12 @@ function ConvertHandler() {
 
   this.spellOutUnit = function(unit) {
     const spellUnits = {
-      gal: 'gallon',
-      L: 'liter',
-      lbs: 'pound',
-      kg: 'kilogram',
-      mi: 'mile',
-      km: 'kilometer'
+      gal: 'gallons',
+      L: 'liters',
+      lbs: 'pounds',
+      kg: 'kilograms',
+      mi: 'miles',
+      km: 'kilometers'
     }
     
     return spellUnits[unit];
@@ -64,10 +64,10 @@ function ConvertHandler() {
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     let result = {
       initNum: initNum,
-      initUnitString: `${initNum}${initUnit}`,
+      initUnit: initUnit,
       returnNum: returnNum,
-      returnNumString: `${returnNum}${returnUnit}`,
-      string: `${initNum} ${this.spellOutUnit(initUnit)}${initNum !== 1 ? 's' : ''} to ${returnNum} ${this.spellOutUnit(returnUnit)}${returnNum !== 1 ? 's' : ''}`
+      returnUnit: returnUnit,
+      string: `${initNum} ${this.spellOutUnit(initUnit)} to ${returnNum} ${this.spellOutUnit(returnUnit)}`
     };
     
     return result;
