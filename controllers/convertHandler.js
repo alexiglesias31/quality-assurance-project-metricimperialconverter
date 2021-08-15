@@ -67,7 +67,7 @@ function ConvertHandler() {
       initUnit: initUnit,
       returnNum: returnNum,
       returnUnit: returnUnit,
-      string: `${initNum} ${this.spellOutUnit(initUnit)} to ${returnNum} ${this.spellOutUnit(returnUnit)}`
+      string: `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`
     };
     
     return result;
