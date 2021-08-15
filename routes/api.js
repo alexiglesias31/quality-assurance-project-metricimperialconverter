@@ -10,7 +10,23 @@ module.exports = function (app) {
 
   router.route('/api/convert')
     .get((req,res) => {
-      console.log(req.query);
+      const initNum = convertHandler.getNum(req.query.input)
+      const initUnit = convertHandler.getUnit(req.query.input)
+      if(initNum === 'invalid number' && initUnit === 'invalid unit') {
+        res.status(200).send('invalid number and unit')
+      }
+      if(initNum === 'invalid number') {
+        res.status(200).send('invalid number')
+      }
+      if(initUnit === 'invalid unit') {
+        res.status(200).send('invalid unit')
+      }
+      const returnNum = convertHandler.convert(initNum,initUnit)
+      const returnUnit = convertHandler.getReturnUnit(initUnit)
+      
+      const returnString = convertHandler.getString(initNum,initUnit,returnNum,returnUnit)
+      res.status(200).send(returnString)
     })
 
+  app.use(router);
 };
