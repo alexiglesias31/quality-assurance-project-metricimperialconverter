@@ -63,9 +63,9 @@ function ConvertHandler() {
   
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
     let result = {
-      initNum: initNum,
+      initNum: parseFloat(initNum),
       initUnit: initUnit,
-      returnNum: returnNum,
+      returnNum: parseFloat(returnNum),
       returnUnit: returnUnit,
       string: `${initNum} ${this.spellOutUnit(initUnit)} converts to ${returnNum} ${this.spellOutUnit(returnUnit)}`
     };

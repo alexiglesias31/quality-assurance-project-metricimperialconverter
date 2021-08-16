@@ -25,7 +25,7 @@ module.exports = function (app) {
       const returnUnit = convertHandler.getReturnUnit(initUnit)
       
       const returnString = convertHandler.getString(initNum,initUnit,returnNum,returnUnit)
-      res.status(200).send(returnString)
+      res.json(returnString)
     })
 
   app.use(router);
